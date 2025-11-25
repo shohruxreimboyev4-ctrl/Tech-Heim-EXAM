@@ -31,7 +31,7 @@ const Header = () => {
   return (
     <>
       <header className="bg-white fixed top-0 w-full z-50 border-b border-blue-500">
-        <div className="max-w-[1200px] w-[90%] mx-auto flex items-center justify-between h-16">
+        <div className="max-w-[1280px] w-[90%] mx-auto flex items-center justify-between h-16">
           <button className="md:hidden text-3xl text-gray-700" onClick={() => setOpen(true)}>
             <RiMenuLine />
           </button>

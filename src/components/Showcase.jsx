@@ -4,7 +4,7 @@ import laptops from "../assets/img/laptops.png";
 const Showcase = () => {
   return (
     <section className="bg-white py-12 px-4 mt-28">
-      <div className="max-w-[1200px] w-[90%] mx-auto flex flex-col lg:flex-row items-center gap-12">
+      <div className="max-w-[1280px] w-[90%] mx-auto flex flex-col lg:flex-row items-center gap-12">
         
         <div className="lg:w-1/2 space-y-8 text-center lg:text-left">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-gray-800 leading-tight ">

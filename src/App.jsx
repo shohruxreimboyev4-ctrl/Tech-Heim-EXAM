@@ -6,6 +6,8 @@ import Blog from "./pages/Blog";
 import FAQ from "./pages/FAQ";
 import ContactUs from "./pages/ContactUs";
 import MainLayout from "./components/layout";
+import CategoryDetail from "./detailpage/CategoryDetail";
+import CardDetail from "./detailpage/CardDetail";
 
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
           <Route path="/blog" element={<Blog />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="category/:categoryName" element={<CategoryDetail />} />
+          <Route path="category/:categoryName/:cardId" element={<CardDetail />} />
         </Route>
       </Routes>
     </>
