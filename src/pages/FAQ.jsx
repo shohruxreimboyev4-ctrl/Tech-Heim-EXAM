@@ -5,9 +5,7 @@ import Footer from '../components/Footer'
 const FAQ = () => {
   return (
     <div>
-        <Header/>
-        <main>FAQ Page</main>
-        <Footer/>
+
     </div>
   )
 }

@@ -5,9 +5,6 @@ import Footer from '../components/Footer'
 const Blog = () => {
   return (
     <div>
-        <Header/>
-        <main>Blog Page</main>
-        <Footer/>
     </div>
   )
 }
