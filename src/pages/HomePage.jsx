@@ -8,6 +8,7 @@ import BestSellers from '../components/BestSellers'
 import TopBrands from '../components/TopBrands'
 import SmartWatch from '../components/SmartWatch'
 import OurBlogs from '../components/OurBlogs'
+import Features from '../components/Features'
 
 const HomePage = () => {
   return (
@@ -21,6 +22,7 @@ const HomePage = () => {
     <TopBrands/>
     <SmartWatch/>
     <OurBlogs/>
+    <Features/>
     </>
   )
 }
