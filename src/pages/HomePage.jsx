@@ -4,6 +4,8 @@ import Categories from '../components/Categories'
 import Featured from '../components/Featured'
 import NewProducts from '../components/NewProducts'
 import ProductPromo from '../components/ProductPromo'
+import BestSellers from '../components/BestSellers'
+import TopBrands from '../components/TopBrands'
 
 const HomePage = () => {
   return (
@@ -13,6 +15,8 @@ const HomePage = () => {
     <Featured/>
     <NewProducts/>
     <ProductPromo/>
+    <BestSellers/>
+    <TopBrands/>
     </>
   )
 }
