@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-// react-icons
 import { AiOutlineHeart, AiOutlineBell, AiOutlineUser } from "react-icons/ai";
 import { MdStore, MdOutlineLocalShipping } from "react-icons/md";
 import { BsShieldCheck } from "react-icons/bs";
@@ -15,6 +14,8 @@ const ItemPreview = () => {
   const [activeTab, setActiveTab] = useState("technical");
   const [showLess, setShowLess] = useState(false);
 
+  const clean = (str) => str.toLowerCase().replace(/\s+/g, "");
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -25,12 +26,14 @@ const ItemPreview = () => {
         const all = res.data;
 
         const categoryData = all.find(
-          (c) => c.category.toLowerCase() === category.toLowerCase()
+          (c) => clean(c.category) === clean(category)
         );
 
         if (!categoryData) return;
 
-        const selected = categoryData.products.find((p) => p.id === id);
+        const selected = categoryData.products.find(
+          (p) => String(p.id) === String(id)
+        );
 
         setProduct(selected);
       } catch (err) {
@@ -41,27 +44,19 @@ const ItemPreview = () => {
     fetchProduct();
   }, [category, id]);
 
-  if (!product) return <div className="p-6 text-center">Loading...</div>;
+  if (!product)
+    return <div className="p-6 text-center pt-24">Loading...</div>;
 
-  // Fallback images
   const images =
     product.images?.length > 0
       ? product.images
-      : [
-          product.image,
-          product.image,
-          product.image,
-        ];
+      : [product.image, product.image, product.image];
 
   return (
-    <div className="w-full py-8 px-4 bg-white">
+    <div className="w-full py-8 px-4 bg-white pt-24">
       <div className="max-w-[1280px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          
-          {/* LEFT IMAGES */}
           <div className="space-y-4 relative">
-
-            {/* Icons */}
             <div className="absolute left-4 top-4 flex flex-col gap-3 z-10">
               <button className="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center border">
                 <AiOutlineHeart size={20} className="text-gray-600" />
@@ -74,7 +69,6 @@ const ItemPreview = () => {
               </button>
             </div>
 
-            {/* MAIN IMAGE */}
             <div className="bg-gray-50 rounded-2xl overflow-hidden aspect-square flex items-center justify-center">
               <img
                 src={images[selectedImage]}
@@ -83,7 +77,6 @@ const ItemPreview = () => {
               />
             </div>
 
-            {/* THUMBNAILS */}
             <div className="flex gap-3 overflow-x-auto pb-2">
               {images.map((img, idx) => (
                 <button
@@ -101,7 +94,6 @@ const ItemPreview = () => {
             </div>
           </div>
 
-          {/* RIGHT SIDE */}
           <div className="space-y-6">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">
@@ -127,7 +119,6 @@ const ItemPreview = () => {
               )}
             </div>
 
-            {/* Rating, stock */}
             <div className="flex items-center gap-6 text-sm">
               <div className="flex items-center gap-1 bg-blue-600 text-white px-2 py-1 rounded">
                 ⭐{product.rating || 4.8}
@@ -144,19 +135,16 @@ const ItemPreview = () => {
               </div>
             </div>
 
-            {/* Description */}
             <p className="text-gray-700 leading-relaxed">
               {product.description || "No description provided."}
             </p>
 
-            {/* Add to cart */}
             <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">
               Add to cart
             </button>
           </div>
         </div>
 
-        {/* TABS */}
         <div className="mt-12">
           <div className="border-b flex gap-8">
             <button
@@ -181,7 +169,6 @@ const ItemPreview = () => {
             </button>
           </div>
 
-          {/* TECH TAB */}
           {activeTab === "technical" && (
             <div className="mt-8 space-y-4">
               {product.specs?.map((s, i) => (
@@ -189,7 +176,9 @@ const ItemPreview = () => {
                   key={i}
                   className="grid grid-cols-1 sm:grid-cols-4 gap-4 py-4 border-b"
                 >
-                  <div className="text-sm font-medium text-gray-600">{s.label}</div>
+                  <div className="text-sm font-medium text-gray-600">
+                    {s.label}
+                  </div>
                   <div className="sm:col-span-3 text-sm text-gray-900">
                     {s.value}
                   </div>

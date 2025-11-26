@@ -6,16 +6,21 @@ const CategoryHub = () => {
   const { category } = useParams();
   const [products, setProducts] = useState([]);
 
+  const clean = (str) => str.toLowerCase().replace(/\s+/g, "");
+
   useEffect(() => {
     const fetchCategoryProducts = async () => {
       try {
         const res = await axios.get(
           "https://69075108b1879c890ed966ea.mockapi.io/api/pages"
         );
+
         const data = res.data;
+
         const categoryData = data.find(
-          (c) => c.category.toLowerCase() === category.toLowerCase()
+          (c) => clean(c.category) === clean(category)
         );
+
         setProducts(categoryData?.products || []);
       } catch (err) {
         console.error(err);
@@ -26,16 +31,17 @@ const CategoryHub = () => {
   }, [category]);
 
   return (
-    <div className="p-6 max-w-[1224px] mx-auto">
+    <div className="p-6 max-w-[1224px] mx-auto pt-24">
       <h1 className="text-3xl font-bold mb-6">{category.toUpperCase()}</h1>
+
       {products.length === 0 ? (
-        <p className="text-gray-500">No products found in this category.</p>
+        <p className="text-gray-500">No products found.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map((product) => (
             <Link
               key={product.id}
-              to={`/category/${category}/${product.id}`}
+              to={`/category/${clean(category)}/${product.id}`}
               className="bg-white shadow-md rounded-lg overflow-hidden hover:scale-105 transition-transform"
             >
               <img
